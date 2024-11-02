@@ -62,3 +62,14 @@ char get_key() {
     
     return c;
 }
+
+bool submit_pressed(){
+
+    while((inb(KEYBOARD_STATUS_PORT) & 1) == 0);
+    
+
+    uint8_t scancode = inb(KEYBOARD_DATA_PORT);
+    
+
+    return (scancode == 0x1C);
+}
