@@ -7,8 +7,8 @@ void k_main()
 	init_keyboard();
 	k_clear_screen();
 	unsigned int line = 0;
-	printk("Kernel Iniciado", line);
-
+	// ruuningKernel(); <-- Animation Kernel Ruuning.
+	welcomeOs();
 	while (1){
 
 		
