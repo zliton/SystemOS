@@ -10,6 +10,9 @@ static inline uint8_t inb(uint16_t port) {
     asm volatile ("inb %1, %0" : "=a"(ret) : "Nd"(port));
     return ret;
 }
+static inline void outb(uint16_t port, uint8_t val) {
+    asm volatile ("outb %0, %1" : : "a"(val), "Nd"(port));
+}
 
 // mapa de teclas
 static char keyboard_map[128] = {
@@ -21,12 +24,38 @@ static char keyboard_map[128] = {
 };
 
 
+void init_keyboard() {
+    
+    while((inb(KEYBOARD_STATUS_PORT) & 2) != 0);
+    
+    outb(KEYBOARD_DATA_PORT, 0xFF);
+    
+
+    while((inb(KEYBOARD_STATUS_PORT) & 1) == 0);
+    uint8_t ack = inb(KEYBOARD_DATA_PORT);
+    
+    if(ack == 0xFA) {
+        
+        outb(KEYBOARD_DATA_PORT, 0xF3);  
+        while((inb(KEYBOARD_STATUS_PORT) & 2) != 0);  
+        outb(KEYBOARD_DATA_PORT, 0x00);  
+        
+        outb(KEYBOARD_DATA_PORT, 0xF4);
+    }
+    
+
+    while((inb(KEYBOARD_STATUS_PORT) & 1) != 0) {
+        inb(KEYBOARD_DATA_PORT);
+    }
+}
+
+
 char get_key() {
     char c = 0;
     while((inb(KEYBOARD_STATUS_PORT) & 1) == 0);
 
     uint8_t scancode = inb(KEYBOARD_DATA_PORT);
-    
+
     if (scancode < 128) {
         c = keyboard_map[scancode];
     }

@@ -1,7 +1,10 @@
 #include "kernel.h"
 #include "functions.h"
+#include "keyboard.h"
 void k_main() 
 {
+
+	init_keyboard();
 	k_clear_screen();
 	printk("Kernel Iniciado")
 
