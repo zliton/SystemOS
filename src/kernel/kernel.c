@@ -1,13 +1,13 @@
 #include "kernel.h"
 #include "functions.h"
 #include "keyboard.h"
+#include "os.h"
 void k_main() 
 {
 
 	init_keyboard();
 	k_clear_screen();
-	unsigned int line = 0;
-	// ruuningKernel(); <-- Animation Kernel Ruuning.
+
 	welcomeOs();
 	while (1){
 

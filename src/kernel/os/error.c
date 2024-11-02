@@ -1,4 +1,4 @@
-#include "print.c"
+#include "functions.h"
 
 void errorMsg(char msg) {
     char message = "Error Code:" + msg;
