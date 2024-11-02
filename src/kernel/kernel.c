@@ -4,6 +4,11 @@ void k_main()
 {
 	k_clear_screen();
 	printk("Kernel Iniciado")
+
+	while (1){
+
+		
+	}
 };
 
 void k_clear_screen()
