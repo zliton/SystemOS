@@ -1,10 +1,11 @@
 #include "print.c"
 #include <stdio.h>
 #include <unistd.h>
+/*
 void welcomeMessage(unsigned int line){
     printk("=================\n    System OS    \n=================", line);
 }
-
+*/
 void ruuningKernel(){
     const char *message = "Running Kernel";
     for (int i = 1; i <= 4; i++) {
@@ -40,7 +41,7 @@ void msgBiosOff(){
 
 
 void welcomeOs() {
-    printk("SYSTEM OS (v0.0.1)",0);
+    printk("CabimOS (v0.0.1)",0);
     printk("johndoe@coredata",1);
     printk("----------------",2);
     printk("OS: System OS 0.0.1",3);
